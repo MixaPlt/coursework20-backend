@@ -15,6 +15,9 @@ class UserView(APIView):
         serializer = UserSerializer(users, many=True)
         return Response({"users": serializer.data})
 
+
+@permission_classes((permissions.AllowAny,))
+class RegistrationView(APIView):
     def post(self, request):
         user = request.data.get('user')
         serializer = RegistrationSerializer(data=user)
