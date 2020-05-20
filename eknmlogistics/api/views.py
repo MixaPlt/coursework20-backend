@@ -5,7 +5,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from .models import User
-from .serializers import UserSerializer, RegistrationSerializer
+from .serializers import UserSerializer, RegistrationSerializer, LoginSerializer
 
 
 @permission_classes((permissions.AllowAny,))
@@ -19,13 +19,15 @@ class UserView(APIView):
 @permission_classes((permissions.AllowAny,))
 class RegistrationView(APIView):
     def post(self, request):
+        global user_saved
         serializer = RegistrationSerializer(data=request.data)
         if serializer.is_valid(raise_exception=True):
             user = User.objects.filter(email=serializer.validated_data.get('email'))[:1]
             if user:
                 return HttpResponseServerError({"{\"error\": \"Such user already exists\"}"})
             user_saved = serializer.save()
-        response = Response({"success": "User successfully created"})
+        response_serializer = UserSerializer(user_saved)
+        response = Response({"user": response_serializer.data})
         response['session-token'] = user_saved.token
         return response
 
@@ -38,4 +40,21 @@ class MeView(APIView):
         if not token or not user:
             return HttpResponseServerError({"error: Invalid token"})
         serializer = UserSerializer(user)
-        return Response({"user": serializer.data})
+        return Response(serializer.data)
+
+@permission_classes((permissions.AllowAny,))
+class LoginView(APIView):
+    def post(self, request):
+        global user
+        serializer = LoginSerializer(data=request.data)
+        if serializer.is_valid(raise_exception=True):
+            user = User.objects.filter(email=serializer.validated_data.get('email'))[:1][0]
+            if not user:
+                return HttpResponseServerError({"error: email not found"})
+            elif user.password_hash != serializer.validated_data.get('password_hash'):
+                return HttpResponseServerError({"error: incorrect password"})
+
+        response_serializer = UserSerializer(user)
+        response = Response({"user": response_serializer.data})
+        response['session-token'] = user_saved.token
+        return response
