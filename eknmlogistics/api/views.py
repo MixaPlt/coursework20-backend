@@ -19,8 +19,7 @@ class UserView(APIView):
 @permission_classes((permissions.AllowAny,))
 class RegistrationView(APIView):
     def post(self, request):
-        user = request.data.get('user')
-        serializer = RegistrationSerializer(data=user)
+        serializer = RegistrationSerializer(data=request.data)
         if serializer.is_valid(raise_exception=True):
             user = User.objects.filter(email=serializer.validated_data.get('email'))[:1]
             if user:
