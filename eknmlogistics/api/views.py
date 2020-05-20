@@ -28,3 +28,14 @@ class RegistrationView(APIView):
         response = Response({"success": "User successfully created"})
         response['session-token'] = user_saved.token
         return response
+
+
+@permission_classes((permissions.AllowAny,))
+class MeView(APIView):
+    def get(self, request):
+        token = request.META.get('HTTP_SESSION_TOKEN', None)
+        user = User.objects.filter(token=token)[:1][0]
+        if not token or not user:
+            return HttpResponseServerError({"error: Invalid token"})
+        serializer = UserSerializer(user)
+        return Response({"user": serializer.data})
