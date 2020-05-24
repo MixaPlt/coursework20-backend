@@ -20,3 +20,22 @@ class User(models.Model):
 
     def __str__(self):
         return self.name
+
+
+payment_images = [
+    'https://upload.wikimedia.org/wikipedia/commons/7/72/MasterCard_early_1990s_logo.png',
+    'https://c7.hotpng.com/preview/400/28/996/credit-card-computer-icons-visa-electron-bank-curio.jpg',
+]
+
+
+def random_payment_image():
+    return random.choice(payment_images)
+
+
+class PaymentMethod(models.Model):
+    title = models.CharField(max_length=32, default="mocked")
+    image = models.CharField(max_length=128, default=random_payment_image)
+    # TODO: Unmock and use real payment service
+    payment_service = models.CharField(max_length=32)
+    payment_id = models.CharField(max_length=32)
+    owner = models.ForeignKey(User, on_delete=models.CASCADE)
