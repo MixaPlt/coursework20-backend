@@ -4,6 +4,7 @@ from rest_framework.decorators import permission_classes
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
+from .maps import reverseGeocode
 from .serializers import *
 
 
@@ -82,3 +83,24 @@ class PaymentsView(APIView):
         user_methods = PaymentMethod.objects.filter(owner=user)
         serializer = PaymentMethodResponseSerializer(user_methods, many=True)
         return Response(serializer.data)
+
+
+@permission_classes((permissions.AllowAny,))
+class ReverseGeocodeView(APIView):
+    def get(self, request):
+        latitude = request.query_params.get('latitude')
+        longitude = request.query_params.get('longitude')
+        if not latitude or not longitude:
+            return HttpResponseServerError('No params')
+        google_response = reverseGeocode(latitude, longitude)['results'][0]['address_components']
+
+        def item_by_type(type):
+            x = None
+            return [x for x in google_response if type in x['types']]
+
+        street = item_by_type('route')[0]['short_name']
+        street_number = item_by_type('street_number')
+        formatted = street
+        if street_number:
+            formatted += ", " + street_number[0]['short_name']
+        return Response(formatted)

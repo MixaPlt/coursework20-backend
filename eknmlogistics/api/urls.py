@@ -1,6 +1,6 @@
 from django.urls import path
 
-from .views import UserView, RegistrationView, MeView, LoginView, PaymentsView
+from .views import *
 
 urlpatterns = [
     path('user/all', UserView.as_view()),
@@ -8,5 +8,6 @@ urlpatterns = [
     path('user/me', MeView.as_view()),
     path('user/login', LoginView.as_view()),
     path('payments/', PaymentsView.as_view()),
+    path('maps/reverse_geocode', ReverseGeocodeView.as_view()),
 ]
  
