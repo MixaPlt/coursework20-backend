@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?><project name="EKNMLogistics" company="EKNM" webLink="http://eknm.net" view-date="2020-11-16" view-index="1" gantt-divider-location="444" resource-divider-location="300" version="2.8.11" locale="ru_RU">
+    <description><![CDATA[Simple delivery client.
+]]></description>
+    <view zooming-state="default:2" id="gantt-chart">
+        <field id="tpd3" name="Название" width="268" order="0"/>
+        <field id="tpd4" name="Дата начала" width="67" order="1"/>
+        <field id="tpd5" name="Дата окончания" width="105" order="2"/>
+    </view>
+    <view id="resource-table">
+        <field id="0" name="Имя" width="210" order="0"/>
+        <field id="1" name="Стандартная роль" width="86" order="1"/>
+    </view>
+    <!-- -->
+    <calendars>
+        <day-types>
+            <day-type id="0"/>
+            <day-type id="1"/>
+            <default-week id="1" name="default" sun="1" mon="0" tue="0" wed="0" thu="0" fri="0" sat="1"/>
+            <only-show-weekends value="false"/>
+            <overriden-day-types/>
+            <days/>
+        </day-types>
+        <date year="" month="1" date="1" type="HOLIDAY"><![CDATA[Новий рік]]></date>
+        <date year="" month="1" date="7" type="HOLIDAY"><![CDATA[Різдво Христове]]></date>
+        <date year="" month="3" date="8" type="HOLIDAY"><![CDATA[Міжнародний жіночий день]]></date>
+        <date year="" month="5" date="1" type="HOLIDAY"><![CDATA[День міжнародної солідарності трудящих]]></date>
+        <date year="" month="5" date="2" type="HOLIDAY"><![CDATA[День міжнародної солідарності трудящих]]></date>
+        <date year="" month="5" date="9" type="HOLIDAY"><![CDATA[День Перемоги]]></date>
+        <date year="" month="6" date="4" type="HOLIDAY"><![CDATA[Трійця]]></date>
+        <date year="" month="6" date="28" type="HOLIDAY"><![CDATA[День Конституції України]]></date>
+        <date year="" month="8" date="24" type="HOLIDAY"><![CDATA[День незалежності України]]></date>
+        <date year="" month="10" date="14" type="HOLIDAY"><![CDATA[День захисника України]]></date>
+        <date year="2017" month="1" date="1" type="HOLIDAY"><![CDATA[Новий рік]]></date>
+        <date year="2017" month="1" date="2" type="HOLIDAY"><![CDATA[Перенесений вихідний 01/01/2017]]></date>
+        <date year="2017" month="1" date="7" type="HOLIDAY"><![CDATA[Різдво Христове]]></date>
+        <date year="2017" month="1" date="9" type="HOLIDAY"><![CDATA[Перенесений вихідний 07/01/2017]]></date>
+        <date year="2017" month="3" date="8" type="HOLIDAY"><![CDATA[Міжнародний жіночий день]]></date>
+        <date year="2017" month="4" date="16" type="HOLIDAY"><![CDATA[Пасха]]></date>
+        <date year="2017" month="4" date="17" type="HOLIDAY"><![CDATA[Перенесений вихідний 16/04/2017]]></date>
+        <date year="2017" month="5" date="1" type="HOLIDAY"><![CDATA[День міжнародної солідарності трудящих]]></date>
+        <date year="2017" month="5" date="2" type="HOLIDAY"><![CDATA[День міжнародної солідарності трудящих]]></date>
+        <date year="2017" month="5" date="9" type="HOLIDAY"><![CDATA[День Перемоги]]></date>
+        <date year="2017" month="6" date="4" type="HOLIDAY"><![CDATA[Трійця]]></date>
+        <date year="2017" month="6" date="5" type="HOLIDAY"><![CDATA[Перенесений вихідний 04/06/2017]]></date>
+        <date year="2017" month="6" date="28" type="HOLIDAY"><![CDATA[День Конституції України]]></date>
+        <date year="2017" month="8" date="24" type="HOLIDAY"><![CDATA[День незалежності України]]></date>
+        <date year="2017" month="10" date="14" type="HOLIDAY"><![CDATA[День захисника України]]></date>
+        <date year="2017" month="10" date="16" type="HOLIDAY"><![CDATA[Перенесений вихідний 14/10/2017]]></date>
+    </calendars>
+    <tasks empty-milestones="true">
+        <taskproperties>
+            <taskproperty id="tpd0" name="type" type="default" valuetype="icon"/>
+            <taskproperty id="tpd1" name="priority" type="default" valuetype="icon"/>
+            <taskproperty id="tpd2" name="info" type="default" valuetype="icon"/>
+            <taskproperty id="tpd3" name="name" type="default" valuetype="text"/>
+            <taskproperty id="tpd4" name="begindate" type="default" valuetype="date"/>
+            <taskproperty id="tpd5" name="enddate" type="default" valuetype="date"/>
+            <taskproperty id="tpd6" name="duration" type="default" valuetype="int"/>
+            <taskproperty id="tpd7" name="completion" type="default" valuetype="int"/>
+            <taskproperty id="tpd8" name="coordinator" type="default" valuetype="text"/>
+            <taskproperty id="tpd9" name="predecessorsr" type="default" valuetype="text"/>
+        </taskproperties>
+        <task id="11" name="Планирование функционала" color="#8cb6ce" meeting="false" start="2020-11-20" duration="8" complete="0" thirdDate="2020-11-24" thirdDate-constraint="0" expand="true">
+            <depend id="0" type="2" difference="0" hardness="Strong"/>
+            <depend id="1" type="2" difference="0" hardness="Strong"/>
+            <task id="17" name="Планирование API" color="#8cb6ce" meeting="false" start="2020-11-20" duration="3" complete="0" thirdDate="2020-11-24" thirdDate-constraint="0" expand="true"/>
+            <task id="23" name="Разработка базового дизайна" color="#8cb6ce" meeting="false" start="2020-11-24" duration="6" complete="0" thirdDate="2020-11-24" thirdDate-constraint="0" expand="true"/>
+        </task>
+        <task id="0" name="Разработка бэкэнда" color="#000000" meeting="false" start="2020-12-02" duration="9" complete="0" thirdDate="2020-12-02" thirdDate-constraint="0" expand="true">
+            <depend id="48" type="2" difference="0" hardness="Strong"/>
+            <task id="8" name="Эндпоинты авторизации" color="#8cb6ce" meeting="false" start="2020-12-02" duration="2" complete="0" thirdDate="2020-12-02" thirdDate-constraint="0" expand="true">
+                <depend id="44" type="2" difference="0" hardness="Strong"/>
+            </task>
+            <task id="29" name="Эндпоинты способов оплаты" color="#8cb6ce" meeting="false" start="2020-12-02" duration="3" complete="0" thirdDate="2020-12-02" thirdDate-constraint="0" expand="true">
+                <depend id="56" type="2" difference="0" hardness="Strong"/>
+            </task>
+            <task id="31" name="Эндпоинты построения маршрутов" color="#8cb6ce" meeting="false" start="2020-12-08" duration="5" complete="0" thirdDate="2020-12-03" thirdDate-constraint="0" expand="true">
+                <depend id="54" type="2" difference="0" hardness="Strong"/>
+            </task>
+            <task id="33" name="Настройка Google API" color="#8cb6ce" meeting="false" start="2020-12-02" duration="4" complete="0" thirdDate="2020-12-02" thirdDate-constraint="0" expand="true">
+                <depend id="31" type="2" difference="0" hardness="Strong"/>
+            </task>
+        </task>
+        <task id="1" name="Разработка мобильного приложения" color="#000000" meeting="false" start="2020-12-02" duration="14" complete="0" thirdDate="2020-12-02" thirdDate-constraint="0" expand="true">
+            <depend id="49" type="2" difference="0" hardness="Strong"/>
+            <task id="38" name="Настройка Google Services SDK" color="#8cb6ce" meeting="false" start="2020-12-08" duration="4" complete="0" thirdDate="2020-12-03" thirdDate-constraint="0" expand="true"/>
+            <task id="40" name="Настройка внедрения зависимостей" color="#8cb6ce" meeting="false" start="2020-12-02" duration="4" complete="0" thirdDate="2020-12-02" thirdDate-constraint="0" expand="true">
+                <depend id="38" type="2" difference="0" hardness="Strong"/>
+            </task>
+            <task id="44" name="Флоу авторизации" color="#8cb6ce" meeting="false" start="2020-12-04" duration="2" complete="0" thirdDate="2020-12-04" thirdDate-constraint="0" expand="true"/>
+            <task id="54" name="Флоу построения маршрута" color="#8cb6ce" meeting="false" start="2020-12-15" duration="5" complete="0" thirdDate="2020-12-15" thirdDate-constraint="0" expand="true"/>
+            <task id="56" name="Флоу методов оплаты" color="#8cb6ce" meeting="false" start="2020-12-07" duration="2" complete="0" thirdDate="2020-12-07" thirdDate-constraint="0" expand="true"/>
+        </task>
+        <task id="45" name="Тестирование" color="#000000" meeting="false" start="2020-12-15" duration="8" complete="0" thirdDate="2020-12-04" thirdDate-constraint="0" expand="true">
+            <task id="48" name="Тестирование эндпоинтов и БД" color="#8cb6ce" meeting="false" start="2020-12-15" duration="4" complete="0" thirdDate="2020-12-15" thirdDate-constraint="0" expand="true"/>
+            <task id="49" name="Тестирование мобильного приложения" color="#8cb6ce" meeting="false" start="2020-12-22" duration="3" complete="0" thirdDate="2020-12-22" thirdDate-constraint="0" expand="true"/>
+        </task>
+    </tasks>
+    <resources>
+        <resource id="0" name="Разработчик бэкэнда" function="SoftwareDevelopment:2" contacts="" phone="">
+            <rate name="standard" value="1"/>
+        </resource>
+        <resource id="1" name="Тестировщик" function="SoftwareDevelopment:4" contacts="" phone=""/>
+        <resource id="2" name="Менеджер проекта" function="Default:0" contacts="" phone=""/>
+        <resource id="3" name="Мобильный разработчик" function="Default:0" contacts="" phone=""/>
+    </resources>
+    <allocations>
+        <allocation task-id="0" resource-id="0" function="SoftwareDevelopment:2" responsible="true" load="100.0"/>
+        <allocation task-id="45" resource-id="1" function="SoftwareDevelopment:4" responsible="true" load="100.0"/>
+        <allocation task-id="11" resource-id="2" function="Default:0" responsible="true" load="100.0"/>
+        <allocation task-id="1" resource-id="3" function="Default:0" responsible="true" load="100.0"/>
+    </allocations>
+    <vacations/>
+    <previous/>
+    <roles roleset-name="Default"/>
+    <roles roleset-name="SoftwareDevelopment"/>
+</project>
