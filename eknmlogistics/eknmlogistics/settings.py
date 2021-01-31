@@ -31,6 +31,9 @@ SECURE_SSL_REDIRECT = False
 
 ALLOWED_HOSTS = [
     '192.168.0.2',
+    '192.168.1.112',
+    '192.168.1.104',
+    '192.168.0.5',
     '192.168.1.183',
     '77.120.183.164',
     'localhost'
@@ -86,8 +89,11 @@ WSGI_APPLICATION = 'eknmlogistics.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'eknm_db',
+        'PASSWORD': '654321',
+        'HOST': '127.0.0.1',
+        'PORT': '5432',
     }
 }
 

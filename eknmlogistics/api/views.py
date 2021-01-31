@@ -1,10 +1,10 @@
 from django.http import HttpResponseServerError
 from rest_framework import permissions
-from rest_framework.decorators import permission_classes
+from rest_framework.decorators import permission_classes, api_view
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from .maps import reverseGeocode
+from .maps import reverse_geocode, route_waypoints
 from .serializers import *
 
 
@@ -92,7 +92,7 @@ class ReverseGeocodeView(APIView):
         longitude = request.query_params.get('longitude')
         if not latitude or not longitude:
             return HttpResponseServerError('No params')
-        google_response = reverseGeocode(latitude, longitude)['results'][0]['address_components']
+        google_response = reverse_geocode(latitude, longitude)['results'][0]['address_components']
 
         def item_by_type(type):
             x = None
@@ -104,3 +104,20 @@ class ReverseGeocodeView(APIView):
         if street_number:
             formatted += ", " + street_number[0]['short_name']
         return Response(formatted)
+
+
+@permission_classes((permissions.AllowAny,))
+class CreateRouteView(APIView):
+    def post(self, request):
+        origin_lat = request.query_params.get('origin_lat')
+        origin_lng = request.query_params.get('origin_lng')
+        destination_lat = request.query_params.get('destination_lat')
+        destination_lng = request.query_params.get('destination_lng')
+
+        waypoints = route_waypoints(origin_lat, origin_lng, destination_lat, destination_lng)
+        waypoints = {'points': [
+            {'latitude': origin_lat, 'longitude': origin_lng},
+            {'latitude': 50.01473287768409, 'longitude': 36.22807044535875}, #NURE)))
+            {'latitude': destination_lat, 'longitude': destination_lng},
+        ]}
+        return Response(waypoints)
