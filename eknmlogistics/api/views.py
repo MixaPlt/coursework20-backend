@@ -114,10 +114,6 @@ class CreateRouteView(APIView):
         destination_lat = request.query_params.get('destination_lat')
         destination_lng = request.query_params.get('destination_lng')
 
-        waypoints = route_waypoints(origin_lat, origin_lng, destination_lat, destination_lng)
-        waypoints = {'points': [
-            {'latitude': origin_lat, 'longitude': origin_lng},
-            {'latitude': 50.01473287768409, 'longitude': 36.22807044535875}, #NURE)))
-            {'latitude': destination_lat, 'longitude': destination_lng},
-        ]}
-        return Response(waypoints)
+        raw_points = route_waypoints(origin_lat, origin_lng, destination_lat, destination_lng)
+        points = {'points': raw_points}
+        return Response(points)
