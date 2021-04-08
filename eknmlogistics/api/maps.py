@@ -27,7 +27,8 @@ def directions(origin_lat, origin_lng, destination_lat, destination_lng):
     return response.json()
 
 
-def _trans(value, index):
+def trans(value, index):
+    global comp
     byte, result, shift = None, 0, 0
 
     while byte is None or byte >= 0x20:
@@ -44,8 +45,8 @@ def decode_polyline(expression, precision=5):
     coordinates, index, lat, lng, length, factor = [], 0, 0, 0, len(expression), float(10 ** precision)
 
     while index < length:
-        lat_change, index = _trans(expression, index)
-        lng_change, index = _trans(expression, index)
+        lat_change, index = trans(expression, index)
+        lng_change, index = trans(expression, index)
         lat += lat_change
         lng += lng_change
         coordinates.append((lat / factor, lng / factor))

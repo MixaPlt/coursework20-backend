@@ -98,12 +98,15 @@ class ReverseGeocodeView(APIView):
             x = None
             return [x for x in google_response if type in x['types']]
 
-        street = item_by_type('route')[0]['short_name']
-        street_number = item_by_type('street_number')
-        formatted = street
-        if street_number:
-            formatted += ", " + street_number[0]['short_name']
-        return Response(formatted)
+        try:
+            street = item_by_type('route')[0]['short_name']
+            street_number = item_by_type('street_number')
+            formatted = street
+            if street_number:
+                formatted += ", " + street_number[0]['short_name']
+            return Response(formatted)
+        except:
+            return Response("Unnamed road")
 
 
 @permission_classes((permissions.AllowAny,))
