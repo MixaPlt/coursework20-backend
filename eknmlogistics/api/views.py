@@ -120,3 +120,18 @@ class CreateRouteView(APIView):
         raw_points = route_waypoints(origin_lat, origin_lng, destination_lat, destination_lng)
         points = {'points': raw_points}
         return Response(points)
+
+
+@permission_classes((permissions.AllowAny,))
+class NearDrivers(APIView):
+    def get(self, request):
+        from .drivers import driver
+        response = []
+        drivers = driver.provide_drivers()
+        for cord in drivers:
+            latlng = cord.location()
+            response.append({
+                "lat": latlng[0],
+                "lng": latlng[1],
+            })
+        return Response(response)

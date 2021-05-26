@@ -10,5 +10,6 @@ urlpatterns = [
     path('payments/', PaymentsView.as_view()),
     path('maps/reverse_geocode', ReverseGeocodeView.as_view()),
     path('maps/create_route', CreateRouteView.as_view()),
+    path('maps/near_drivers', NearDrivers.as_view()),
 ]
  
