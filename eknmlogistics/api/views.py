@@ -88,8 +88,8 @@ class PaymentsView(APIView):
 @permission_classes((permissions.AllowAny,))
 class ReverseGeocodeView(APIView):
     def get(self, request):
-        latitude = request.query_params.get('latitude')
-        longitude = request.query_params.get('longitude')
+        latitude = float(request.query_params.get('latitude'))
+        longitude = float(request.query_params.get('longitude'))
         if not latitude or not longitude:
             return HttpResponseServerError('No params')
         google_response = reverse_geocode(latitude, longitude)['results'][0]['address_components']
@@ -131,7 +131,8 @@ class NearDrivers(APIView):
         for cord in drivers:
             latlng = cord.location()
             response.append({
-                "lat": latlng[0],
-                "lng": latlng[1],
+                "latitude": latlng[0],
+                "longitude": latlng[1],
+                "accuracy": 0,
             })
         return Response(response)

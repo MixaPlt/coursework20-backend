@@ -21,7 +21,7 @@ def sqr(a):
 class MockedDriver(BaseDriver):
     locations = []
     timestamp = 0
-    speed = 0.05
+    speed = 0.0003
     next_point = 1
 
     def __init__(self, locations: [[]]):
@@ -39,7 +39,7 @@ class MockedDriver(BaseDriver):
         distance = self.speed * (new_timestamp - self.timestamp)
         prev_point = self.locations[self.next_point - 1]
         next_point = self.locations[self.next_point]
-        while (sqr(prev_point[0] - next_point[0]) + sqr(prev_point[1] - next_point[1])) >= sqr(distance):
+        while (sqr(prev_point[0] - next_point[0]) + sqr(prev_point[1] - next_point[1])).real <= sqr(distance).real:
             distance -= sqrt(sqr(prev_point[0] - next_point[0]) + sqr(prev_point[1] - next_point[1])).real
             self.next_point += 1
             self.next_point = self.next_point % len(self.locations)
@@ -47,13 +47,23 @@ class MockedDriver(BaseDriver):
             next_point = self.locations[self.next_point]
             self.timestamp = new_timestamp
 
-        segment_dis_prc = distance / (sqr(prev_point[0] - next_point[0]) + sqr(prev_point[1] - next_point[1]))
+        segment_dis_prc = distance / sqrt(sqr(prev_point[0] - next_point[0]) + sqr(prev_point[1] - next_point[1])).real
 
-        return [(next_point[0] - prev_point[0]) * segment_dis_prc, (next_point[1] - prev_point[1]) * segment_dis_prc]
+        return [(next_point[0] - prev_point[0]) * segment_dis_prc + prev_point[0], (next_point[1] - prev_point[1]) * segment_dis_prc + prev_point[1]]
 
 
 mocked_routes = [
-    [[0, 0], [49.988358, 36.232845]]
+    [
+        [50.01446249308336, 36.22676655650139],
+        [50.01238812937883, 36.22736904770135],
+        [50.01276302101477, 36.23200725764036],
+        [50.01238877574624, 36.235036477446556],
+        [50.017157868684976, 36.232367008924484],
+        [50.01685044278706, 36.2307134270668],
+        [50.01961677420948, 36.22904475778341],
+        [50.01901380034983, 36.22745420783758],
+        [50.018733961035835, 36.2254448980093],
+    ]
 ]
 drivers = []
 
