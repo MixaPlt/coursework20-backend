@@ -37,7 +37,8 @@ ALLOWED_HOSTS = [
     '192.168.1.183',
     '77.120.183.164',
     '192.168.1.108',
-    'localhost'
+    'localhost',
+    '192.168.1.165',
 ]
 
 
@@ -92,6 +93,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'eknm_db',
+        'USER' : 'eknm_db',
         'PASSWORD': '654321',
         'HOST': '127.0.0.1',
         'PORT': '5432',

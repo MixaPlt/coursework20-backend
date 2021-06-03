@@ -119,6 +119,15 @@ class CreateRouteView(APIView):
 
         raw_points = route_waypoints(origin_lat, origin_lng, destination_lat, destination_lng)
         points = {'points': raw_points}
+
+        ##Update distance matrix
+      #  try:
+        user = get_user_from_request(request)
+        from .orders import orders_service
+        orders_service.add_order(user.id, (origin_lat, origin_lng), (destination_lat, destination_lng))
+      #  except:
+
+
         return Response(points)
 
 

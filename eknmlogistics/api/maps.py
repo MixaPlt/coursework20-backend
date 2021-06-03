@@ -1,8 +1,10 @@
 from itertools import chain
 
+import googlemaps
 import requests
 
 api_key = 'AIzaSyChUMNWC0jTUqm_cf5vAtxLICIFLQEOolc'
+gmaps: googlemaps.Client = googlemaps.Client(key=api_key)
 
 
 def reverse_geocode_url(latitude, longitude):
