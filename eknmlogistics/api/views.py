@@ -134,14 +134,21 @@ class CreateRouteView(APIView):
 @permission_classes((permissions.AllowAny,))
 class NearDrivers(APIView):
     def get(self, request):
+        user = get_user_from_request(request)
         from .drivers import driver
         response = []
         drivers = driver.provide_drivers()
+
         for cord in drivers:
             latlng = cord.location()
+            is_your_driver = (cord.order and cord.order.user_id == user.id) == True
             response.append({
-                "latitude": latlng[0],
-                "longitude": latlng[1],
-                "accuracy": 0,
+                "id": cord.id,
+                "location": {
+                    "latitude": latlng[0],
+                    "longitude": latlng[1],
+                    "accuracy": 0,
+                },
+                "is_your_driver": is_your_driver,
             })
         return Response(response)

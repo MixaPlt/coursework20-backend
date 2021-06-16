@@ -1,9 +1,13 @@
-from abc import ABC
 import time
+from abc import ABC
 from cmath import sqrt
+from random import randint
 
 
 class BaseDriver(ABC):
+    order = None
+    id = None
+
     def image_url(self):
         raise NotImplementedError
 
@@ -21,12 +25,13 @@ def sqr(a):
 class MockedDriver(BaseDriver):
     locations = []
     timestamp = 0
-    speed = 0.0003
+    speed = 0.0013
     next_point = 1
 
     def __init__(self, locations: [[]]):
         self.locations = locations
         self.timestamp = time.time()
+        self.id = randint(0, 2147483647)
 
     def image_url(self):
         return "https://www.google.com/url?sa=i&url=https%3A%2F%2Fcoub.com%2Fview%2F1owfrd&psig=AOvVaw0_hb2y-C2Lco4nDGBheble&ust=1622143017256000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCIC0m_iH6PACFQAAAAAdAAAAABAD"
